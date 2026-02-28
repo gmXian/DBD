@@ -1,0 +1,8 @@
+# Adversarial images
+adv_images/
+
+# Model checkpoints
+ckpts/clip/*
+
+# Test datasets
+test_data/
