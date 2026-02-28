@@ -6,3 +6,4 @@ ckpts/clip/*
 
 # Test datasets
 test_data/
+test_data
