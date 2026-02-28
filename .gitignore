@@ -4,6 +4,6 @@ adv_images/
 # Model checkpoints
 ckpts/clip/*
 
-# Test datasets
-test_data/
+# Test datasets (symlink or directory)
 test_data
+test_data/
