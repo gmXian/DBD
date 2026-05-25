@@ -5,9 +5,9 @@ LT_SPLIT=${LT_SPLIT:-val}
 ARCH=${ARCH:-ViT-B/32}
 ATTACK=${ATTACK:-pgd}
 EPS=${EPS:-4.0}
-STEPS=${STEPS:-100}
+STEPS=${STEPS:-10}
 OUT_DIR=${OUT_DIR:-outputs/imagenetlt}
-SPLIT_CSV=${SPLIT_CSV:-data/ImageNet_LT_class_splits.csv}
+SPLIT_CSV=${SPLIT_CSV:-/home/yneversky/data/ImageNet_LT/ImageNet_LT_class_splits.csv}
 ARCH_TAG=${ARCH//\//-}
 
 python tools/analyze_lt_results.py \

@@ -7,3 +7,6 @@ ckpts/clip/*
 # Test datasets (symlink or directory)
 test_data
 test_data/
+*pyc
+__pycache__/
+*.csv
