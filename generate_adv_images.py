@@ -66,7 +66,7 @@ def generate_adversarial_images(args):
     tensor_to_pil_img = transforms.ToPILImage()
 
     arch = args.arch.replace('/', '-')
-    suffix = f'{arch}_{args.attack}_eps{args.eps}'
+    suffix = f'{arch}_{args.attack}_steps{args.steps}_eps{args.eps}'
     if args.disable_gt:
         suffix = f'{suffix}_pseudo'
     if args.test_sets == 'ImageNetLT':
