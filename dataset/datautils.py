@@ -16,10 +16,12 @@ except ImportError:
     BICUBIC = Image.BICUBIC
 
 from dataset.fewshot_datasets import *
+from dataset.imagenet_lt import ImageNetLTDataset
 import dataset.augmix_ops as augmentations
 
 ID_to_DIRNAME={
     'I': 'imagenet/images',
+    'ImageNetLT': 'ImageNet_LT',
     'A': 'imagenet-adversarial/imagenet-a',
     'K': 'imagenet-sketch/images',
     'R': 'imagenet-rendition/imagenet-r',
@@ -71,6 +73,19 @@ def build_dataset(set_id, transform, data_root, mode='test', n_shot=None, split=
         # ImageNet validation set
         testdir = os.path.join(os.path.join(data_root, ID_to_DIRNAME[set_id]), 'val')
         testset = datasets.ImageFolder(testdir, transform=transform)
+    elif set_id == 'ImageNetLT':
+        # Expected local layout:
+        #   data_root/ImageNet/{train,val}/...
+        #   data_root/ImageNet_LT/ImageNet_LT_{train,val,test}.txt
+        image_root = os.path.join(data_root, 'ImageNet')
+        lt_root = os.path.join(data_root, ID_to_DIRNAME[set_id])
+        lt_split = split if split in ['train', 'val', 'test'] else 'val'
+        testset = ImageNetLTDataset(
+            image_root=image_root,
+            lt_root=lt_root,
+            split=lt_split,
+            transform=transform,
+        )
     elif set_id in ['A', 'K', 'R', 'V']:
         testdir = os.path.join(data_root, ID_to_DIRNAME[set_id])
         testset = datasets.ImageFolder(testdir, transform=transform)
